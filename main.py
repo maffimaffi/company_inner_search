@@ -1,7 +1,7 @@
 """
 このファイルは、Webアプリのメイン処理が記述されたファイルです。
 """
-
+import os
 ############################################################
 # 1. ライブラリの読み込み
 ############################################################
@@ -20,9 +20,10 @@ import components as cn
 # （自作）変数（定数）がまとめて定義・管理されているモジュール
 import constants as ct
 # 環境変数の読み込み(add)
-# import os
+import os
 # user_agent = os.getenv("USER_AGENT")
-user_agent = st.secrets["USER_AGENT"]
+# 安全な取得（KeyErrorを防ぐ）
+user_agent = st.secrets.get("USER_AGENT") or os.getenv("USER_AGENT", "default-user-agent")
 
 ############################################################
 # 2. 設定関連
