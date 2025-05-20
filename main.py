@@ -11,6 +11,7 @@ from dotenv import load_dotenv
 import logging
 # streamlitアプリの表示を担当するモジュール
 import streamlit as st
+st.set_page_config(page_title="社内情報特化型生成AI検索アプリ")
 # （自作）画面表示以外の様々な関数が定義されているモジュール
 import utils
 # （自作）アプリ起動時に実行される初期化処理が記述された関数
@@ -19,15 +20,12 @@ from initialize import initialize
 import components as cn
 # （自作）変数（定数）がまとめて定義・管理されているモジュール
 import constants as ct
-st.set_page_config(
-    page_title=ct.APP_NAME
-)
-# 環境変数の読み込み(add)
-# user_agent = os.getenv("USER_AGENT")
-# 安全な取得（KeyErrorを防ぐ）
-user_agent = st.secrets.get("USER_AGENT") or os.getenv("USER_AGENT", "default-user-agent")
-# print("🔍 st.secrets = ", dict(st.secrets))
 
+# 安全なsecrets読み込み
+try:
+    user_agent = st.secrets["USER_AGENT"]
+except Exception:
+    user_agent = os.getenv("USER_AGENT", "default-user-agent")
 """try:
     user_agent = st.secrets["USER_AGENT"]
     print("✅ USER_AGENT loaded:", user_agent)
