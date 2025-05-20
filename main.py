@@ -20,21 +20,56 @@ try:
     print("🔍 st.secrets = ", dict(st.secrets))
 except Exception as e:
     print("❌ secrets 取得エラー:", e)
-    
+
 import os
 # 「.env」ファイルから環境変数を読み込むための関数
 from dotenv import load_dotenv
 
+# 強制ログ出力（Cloudでも表示される）
+print("✅ STARTING APP")
+
+try:
+    import constants as ct
+    print("✅ constants.APP_NAME =", ct.APP_NAME)
+except Exception as e:
+    print("❌ constants import error:", e)
+
+try:
+    from initialize import initialize
+    print("✅ initialize モジュール読み込み成功")
+except Exception as e:
+    print("❌ initialize import error:", e)
+
+try:
+    from components import display_app_title
+    print("✅ components モジュール読み込み成功")
+except Exception as e:
+    print("❌ components import error:", e)
+
+try:
+    from utils import get_llm_response
+    print("✅ utils モジュール読み込み成功")
+except Exception as e:
+    print("❌ utils import error:", e)
+
+try:
+    user_agent = st.secrets.get("USER_AGENT", "fallback")
+    print("✅ USER_AGENT:", user_agent)
+except Exception as e:
+    print("❌ USER_AGENT error:", e)
+
+
+
 # ログ出力を行うためのモジュール
-import logging
+#import logging
 # （自作）画面表示以外の様々な関数が定義されているモジュール
-import utils
+#import utils
 # （自作）アプリ起動時に実行される初期化処理が記述された関数
-from initialize import initialize
+#from initialize import initialize
 # （自作）画面表示系の関数が定義されているモジュール
-import components as cn
+#import components as cn
 # （自作）変数（定数）がまとめて定義・管理されているモジュール
-import constants as ct
+#import constants as ct
 
 
 
