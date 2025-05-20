@@ -8,7 +8,7 @@ import os
 # 「.env」ファイルから環境変数を読み込むための関数
 from dotenv import load_dotenv
 # ログ出力を行うためのモジュール
-# import logging
+import logging
 # streamlitアプリの表示を担当するモジュール
 import streamlit as st
 # （自作）画面表示以外の様々な関数が定義されているモジュール
@@ -18,7 +18,7 @@ import streamlit as st
 # （自作）画面表示系の関数が定義されているモジュール
 # import components as cn
 # （自作）変数（定数）がまとめて定義・管理されているモジュール
-# import constants as ct
+import constants as ct
 # 環境変数の読み込み(add)
 # user_agent = os.getenv("USER_AGENT")
 # 安全な取得（KeyErrorを防ぐ）
