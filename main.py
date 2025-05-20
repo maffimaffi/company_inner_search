@@ -8,8 +8,16 @@
 # streamlitアプリの表示を担当するモジュール
 import streamlit as st
 st.set_page_config(page_title="社内情報特化型生成AI検索アプリ")
+
+import os
 # 「.env」ファイルから環境変数を読み込むための関数
 from dotenv import load_dotenv
+# 安全なsecrets読み込み
+try:
+    user_agent = st.secrets["USER_AGENT"]
+except Exception:
+    user_agent = os.getenv("USER_AGENT", "default-user-agent")
+
 # ログ出力を行うためのモジュール
 import logging
 # （自作）画面表示以外の様々な関数が定義されているモジュール
@@ -20,25 +28,7 @@ from initialize import initialize
 import components as cn
 # （自作）変数（定数）がまとめて定義・管理されているモジュール
 import constants as ct
-import os
-# 安全なsecrets読み込み
-try:
-    user_agent = st.secrets["USER_AGENT"]
-except Exception:
-    user_agent = os.getenv("USER_AGENT", "default-user-agent")
-"""try:
-    user_agent = st.secrets["USER_AGENT"]
-    print("✅ USER_AGENT loaded:", user_agent)
-except Exception as e:
-    print(f"❌ USER_AGENT の取得に失敗しました: {e}")
-    print("🔍 st.secrets keys:", list(st.secrets.keys()))
-    user_agent = "fallback-agent"
 
-try:
-    print("🔍 st.secrets = ", dict(st.secrets))
-except Exception as e:
-    print("❌ secrets 取得エラー:", e)
-"""
 ############################################################
 # 2. 設定関連
 ############################################################
