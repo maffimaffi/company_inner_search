@@ -29,6 +29,20 @@ import components as cn
 # （自作）変数（定数）がまとめて定義・管理されているモジュール
 import constants as ct
 
+
+try:
+    user_agent = st.secrets["USER_AGENT"]
+    print("✅ USER_AGENT loaded:", user_agent)
+except Exception as e:
+    print(f"❌ USER_AGENT の取得に失敗しました: {e}")
+    print("🔍 st.secrets keys:", list(st.secrets.keys()))
+    user_agent = "fallback-agent"
+
+try:
+    print("🔍 st.secrets = ", dict(st.secrets))
+except Exception as e:
+    print("❌ secrets 取得エラー:", e)
+
 ############################################################
 # 2. 設定関連
 ############################################################
