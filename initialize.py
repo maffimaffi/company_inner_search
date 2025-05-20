@@ -18,7 +18,7 @@ from langchain_community.document_loaders import WebBaseLoader
 from langchain.text_splitter import CharacterTextSplitter
 from langchain_openai import OpenAIEmbeddings
 # from langchain_community.vectorstores import Chroma
-from langchain.vectorstores import FAISS
+from langchain_community.vectorstores import FAISS
 import constants as ct
 
 
