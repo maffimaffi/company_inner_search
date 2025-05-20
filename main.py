@@ -19,6 +19,9 @@ from initialize import initialize
 import components as cn
 # （自作）変数（定数）がまとめて定義・管理されているモジュール
 import constants as ct
+# 環境変数の読み込み(add)
+import os
+user_agent = os.getenv("USER_AGENT")
 
 
 ############################################################
