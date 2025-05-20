@@ -8,29 +8,35 @@ import os
 # 「.env」ファイルから環境変数を読み込むための関数
 from dotenv import load_dotenv
 # ログ出力を行うためのモジュール
-import logging
+# import logging
 # streamlitアプリの表示を担当するモジュール
 import streamlit as st
 # （自作）画面表示以外の様々な関数が定義されているモジュール
-import utils
+# import utils
 # （自作）アプリ起動時に実行される初期化処理が記述された関数
-from initialize import initialize
+# from initialize import initialize
 # （自作）画面表示系の関数が定義されているモジュール
-import components as cn
+# import components as cn
 # （自作）変数（定数）がまとめて定義・管理されているモジュール
-import constants as ct
+# import constants as ct
 # 環境変数の読み込み(add)
 # user_agent = os.getenv("USER_AGENT")
 # 安全な取得（KeyErrorを防ぐ）
 # user_agent = st.secrets.get("USER_AGENT") or os.getenv("USER_AGENT", "default-user-agent")
 # print("🔍 st.secrets = ", dict(st.secrets))
-try:
+"""try:
     user_agent = st.secrets["USER_AGENT"]
     print("✅ USER_AGENT loaded:", user_agent)
 except Exception as e:
     print(f"❌ USER_AGENT の取得に失敗しました: {e}")
     print("🔍 st.secrets keys:", list(st.secrets.keys()))
     user_agent = "fallback-agent"
+"""
+try:
+    print("🔍 st.secrets = ", dict(st.secrets))
+except Exception as e:
+    print("❌ secrets 取得エラー:", e)
+
 ############################################################
 # 2. 設定関連
 ############################################################
