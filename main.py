@@ -8,11 +8,6 @@
 # streamlitアプリの表示を担当するモジュール
 import streamlit as st
 st.set_page_config(page_title="社内情報特化型生成AI検索アプリ")
-
-import os
-# 「.env」ファイルから環境変数を読み込むための関数
-from dotenv import load_dotenv
-
 try:
     user_agent = st.secrets["USER_AGENT"]
     print("✅ USER_AGENT loaded:", user_agent)
@@ -25,6 +20,10 @@ try:
     print("🔍 st.secrets = ", dict(st.secrets))
 except Exception as e:
     print("❌ secrets 取得エラー:", e)
+    
+import os
+# 「.env」ファイルから環境変数を読み込むための関数
+from dotenv import load_dotenv
 
 # ログ出力を行うためのモジュール
 import logging
