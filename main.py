@@ -8,7 +8,7 @@ import os
 # 「.env」ファイルから環境変数を読み込むための関数
 from dotenv import load_dotenv
 # ログ出力を行うためのモジュール
-import logging
+# import logging
 # streamlitアプリの表示を担当するモジュール
 import streamlit as st
 # （自作）画面表示以外の様々な関数が定義されているモジュール
@@ -24,6 +24,9 @@ import constants as ct
 # 安全な取得（KeyErrorを防ぐ）
 # user_agent = st.secrets.get("USER_AGENT") or os.getenv("USER_AGENT", "default-user-agent")
 # print("🔍 st.secrets = ", dict(st.secrets))
+st.set_page_config(
+    page_title=ct.APP_NAME
+)
 """try:
     user_agent = st.secrets["USER_AGENT"]
     print("✅ USER_AGENT loaded:", user_agent)
@@ -41,10 +44,11 @@ except Exception as e:
 # 2. 設定関連
 ############################################################
 # ブラウザタブの表示文言を設定
+"""
 st.set_page_config(
     page_title=ct.APP_NAME
 )
-
+"""
 # ログ出力を行うためのロガーの設定
 logger = logging.getLogger(ct.LOGGER_NAME)
 
