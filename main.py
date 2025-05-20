@@ -1,17 +1,17 @@
 """
 このファイルは、Webアプリのメイン処理が記述されたファイルです。
 """
-import os
+
 ############################################################
 # 1. ライブラリの読み込み
 ############################################################
+# streamlitアプリの表示を担当するモジュール
+import streamlit as st
+st.set_page_config(page_title="社内情報特化型生成AI検索アプリ")
 # 「.env」ファイルから環境変数を読み込むための関数
 from dotenv import load_dotenv
 # ログ出力を行うためのモジュール
 import logging
-# streamlitアプリの表示を担当するモジュール
-import streamlit as st
-st.set_page_config(page_title="社内情報特化型生成AI検索アプリ")
 # （自作）画面表示以外の様々な関数が定義されているモジュール
 import utils
 # （自作）アプリ起動時に実行される初期化処理が記述された関数
@@ -20,7 +20,7 @@ from initialize import initialize
 import components as cn
 # （自作）変数（定数）がまとめて定義・管理されているモジュール
 import constants as ct
-
+import os
 # 安全なsecrets読み込み
 try:
     user_agent = st.secrets["USER_AGENT"]
