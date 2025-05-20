@@ -20,9 +20,9 @@ import components as cn
 # （自作）変数（定数）がまとめて定義・管理されているモジュール
 import constants as ct
 # 環境変数の読み込み(add)
-user_agent = os.getenv("USER_AGENT")
+# user_agent = os.getenv("USER_AGENT")
 # 安全な取得（KeyErrorを防ぐ）
-# user_agent = st.secrets.get("USER_AGENT") or os.getenv("USER_AGENT", "default-user-agent")
+user_agent = st.secrets.get("USER_AGENT")
 # print("🔍 st.secrets = ", dict(st.secrets))
 st.set_page_config(
     page_title=ct.APP_NAME
