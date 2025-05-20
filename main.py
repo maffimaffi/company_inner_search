@@ -24,7 +24,7 @@ import os
 # user_agent = os.getenv("USER_AGENT")
 # 安全な取得（KeyErrorを防ぐ）
 user_agent = st.secrets.get("USER_AGENT") or os.getenv("USER_AGENT", "default-user-agent")
-
+print("🔍 st.secrets = ", dict(st.secrets))
 ############################################################
 # 2. 設定関連
 ############################################################
