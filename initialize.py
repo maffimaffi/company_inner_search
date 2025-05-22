@@ -17,8 +17,7 @@ from docx import Document
 from langchain_community.document_loaders import WebBaseLoader
 from langchain.text_splitter import CharacterTextSplitter
 from langchain_openai import OpenAIEmbeddings
-# from langchain_community.vectorstores import Chroma
-from langchain_community.vectorstores import FAISS
+from langchain_community.vectorstores import Chroma
 import constants as ct
 
 
@@ -124,8 +123,9 @@ def initialize_retriever():
     
     # チャンク分割用のオブジェクトを作成
     text_splitter = CharacterTextSplitter(
-        chunk_size=500,
-        chunk_overlap=50,
+    # 問題２ー１
+        chunk_size=ct.CHUNK_SIZE,
+        chunk_overlap=ct.CHUNK_OVERLAP,
         separator="\n"
     )
 
@@ -133,11 +133,10 @@ def initialize_retriever():
     splitted_docs = text_splitter.split_documents(docs_all)
 
     # ベクターストアの作成
-#    db = Chroma.from_documents(splitted_docs, embedding=embeddings)
-    db = FAISS.from_documents(splitted_docs, embedding=embeddings)
+    db = Chroma.from_documents(splitted_docs, embedding=embeddings)
 
-    # ベクターストアを検索するRetrieverの作成
-    st.session_state.retriever = db.as_retriever(search_kwargs={"k": 3})
+    # ベクターストアを検索するRetrieverの作成　問題１／２ー２
+    st.session_state.retriever = db.as_retriever(search_kwargs={"k": ct.KEYWORD_ARGS})
 
 
 def initialize_session_state():
@@ -204,7 +203,6 @@ def recursive_file_check(path, docs_all):
 def file_load(path, docs_all):
     """
     ファイル内のデータ読み込み
-
     Args:
         path: ファイルパス
         docs_all: データソースを格納する用のリスト

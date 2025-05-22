@@ -5,63 +5,12 @@
 ############################################################
 # 1. ライブラリの読み込み
 ############################################################
-# streamlitアプリの表示を担当するモジュール
-import streamlit as st
-st.set_page_config(page_title="社内情報特化型生成AI検索アプリ")
-try:
-    user_agent = st.secrets["USER_AGENT"]
-    print("✅ USER_AGENT loaded:", user_agent)
-except Exception as e:
-    print(f"❌ USER_AGENT の取得に失敗しました: {e}")
-    print("🔍 st.secrets keys:", list(st.secrets.keys()))
-    user_agent = "fallback-agent"
-
-try:
-    print("🔍 st.secrets = ", dict(st.secrets))
-except Exception as e:
-    print("❌ secrets 取得エラー:", e)
-
-import os
 # 「.env」ファイルから環境変数を読み込むための関数
 from dotenv import load_dotenv
-
-# 強制ログ出力（Cloudでも表示される）
-print("✅ STARTING APP")
-
-try:
-    import constants as ct
-    print("✅ constants.APP_NAME =", ct.APP_NAME)
-except Exception as e:
-    print("❌ constants import error:", e)
-
-try:
-    from initialize import initialize
-    print("✅ initialize モジュール読み込み成功")
-except Exception as e:
-    print("❌ initialize import error:", e)
-
-try:
-    from components import display_app_title
-    print("✅ components モジュール読み込み成功")
-except Exception as e:
-    print("❌ components import error:", e)
-
-try:
-    from utils import get_llm_response
-    print("✅ utils モジュール読み込み成功")
-except Exception as e:
-    print("❌ utils import error:", e)
-
-try:
-    user_agent = st.secrets.get("USER_AGENT", "fallback")
-    print("✅ USER_AGENT:", user_agent)
-except Exception as e:
-    print("❌ USER_AGENT error:", e)
-
-
-
 # ログ出力を行うためのモジュール
 import logging
+# streamlitアプリの表示を担当するモジュール
+import streamlit as st
 # （自作）画面表示以外の様々な関数が定義されているモジュール
 import utils
 # （自作）アプリ起動時に実行される初期化処理が記述された関数
@@ -72,15 +21,13 @@ import components as cn
 import constants as ct
 
 
-
 ############################################################
 # 2. 設定関連
 ############################################################
 # ブラウザタブの表示文言を設定
-
-# st.set_page_config(
-#    page_title=ct.APP_NAME
-#)
+st.set_page_config(
+    page_title=ct.APP_NAME
+)
 
 # ログ出力を行うためのロガーの設定
 logger = logging.getLogger(ct.LOGGER_NAME)

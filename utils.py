@@ -114,3 +114,14 @@ def get_llm_response(chat_message):
     st.session_state.chat_history.extend([HumanMessage(content=chat_message), llm_response["answer"]])
 
     return llm_response
+
+# 問題４
+def format_with_page(path, page_number):
+    """
+    PDFファイルの場合、ページ番号付きで表示する。
+    それ以外のファイルはそのまま返す。
+    """
+    if page_number is not None and path.lower().endswith(".pdf"):
+        return f"{path}（ページNo.{page_number + 1}）"
+    return path
+

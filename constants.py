@@ -41,6 +41,8 @@ APP_BOOT_MESSAGE = "アプリが起動されました。"
 # ==========================================
 MODEL = "gpt-4o-mini"
 TEMPERATURE = 0.5
+CHUNK_SIZE = 500
+CHUNK_OVERLAP = 50
 
 
 # ==========================================
@@ -50,12 +52,13 @@ RAG_TOP_FOLDER_PATH = "./data"
 SUPPORTED_EXTENSIONS = {
     ".pdf": PyMuPDFLoader,
     ".docx": Docx2txtLoader,
-    ".csv": lambda path: CSVLoader(path, encoding="utf-8")
+    ".csv": lambda path: CSVLoader(path, encoding="utf-8"),
+    ".txt": TextLoader
 }
 WEB_URL_LOAD_TARGETS = [
     "https://generative-ai.web-camp.io/"
 ]
-
+KEYWORD_ARGS = 5
 
 # ==========================================
 # プロンプトテンプレート
